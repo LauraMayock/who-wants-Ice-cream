@@ -1,31 +1,35 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+## Deployment
 
-Welcome USER_NAME,
+Before you deploy to Heroku, make sure to update any dependencies needed to run your app. A list of dependencies can be saved in the requirements.txt file. This is done automatically after adding the below code into the terminal and then do a git push. 
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+pip3 freeze --local > requirements.txt
 
-## Reminders
+1. Navigate to Heroku website and either sign in or click sign up to create a new account.
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+2. In your account dashboard click the Create new APP button.
 
-## Creating the Heroku app
+3. Add a name for APP in the APP-Name field.
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+4. Select your region from the drop-down menu and click on Create APP button.
 
-1. `heroku/python`
-2. `heroku/nodejs`
+5. On the next page click on the Settings tab to adjust the settings.
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+6. Click on the "config vars" button and hide any sensitive files from being deployed.
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+7. In the field for key add the sensitive file name and in the value field copy the entire file from your workspace into this field and click add.
 
-Connect your GitHub repository and deploy as normal.
+7. in the supply key field below this add PORT and 8000 into the value field. Then click on the "add" button.
 
-## Constraints
+8. Click on the ADD Buildpack button.
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+9. Select python buildpack and click save changes. Then click Add Buldpack button again but this time add node.js and save changes. Please ensure that you are adding them in this order as it may cause issues otherwise.
 
------
-Happy coding!
+10. Navigate to the deploy section by using the deploy tab a the top of the screen, select Github and connect to your Github profile.
+
+11. Search for your Github repo name by adding the name to the repo-name tab and click the search button.
+
+12. When the search is complete, click on the connect button to the right of your repo name.
+
+11. Now you can deploy the app automatically or manually. Automatically deploy will update the app automatically every time you push any changes to Github.
+
+12. Once the build is successful, you can open the app by clicking Open App button in the top right corner.
