@@ -65,6 +65,7 @@ def place_order():
         print("Sorry invalid entry.")
         print("Plese enter cup or cone.")
         place_order()
+return(place_order)
 
 def number_scoops():
     scoops = int(input("How many scoops? Enter 1 ,2 or 3"))
@@ -86,19 +87,22 @@ def number_scoops():
     else:
         print("Sorry invalid entry.")
         number_scoops()
+return(number_scoops)
 
 def flavour_choice():
     """ 
     Shows the list of flavours available from the gsheet.
     """
     print("What flavours would you like?")
-    print(flavour)
+    
+    
 
 
    
 
 
-
+print(f"ok so thats 1{place-order} with{number_scoops} flavours")
+print(f"That will be a total of {price}")
 
 start_order()
 
