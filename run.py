@@ -25,6 +25,7 @@ flavours = SHEET.worksheet("flavours")
 customer_order = []
 price = []
 scoops = []
+list = []
 #flavour = flavours.col_values(1)  #  List of flavours in spreadsheet
 
 
@@ -52,13 +53,11 @@ def start_order():
         
 
 def place_order():
-    list = []
     choice = True
     while True:
         holder = input("What would you like a cup or a cone?").lower()
         if holder in ("cup","cone"):
             number_scoops()
-            append.customer_order[holder]
             break
             
         else:
@@ -74,8 +73,8 @@ def number_scoops():
     elif scoops == 2:
         print("Ok, two scoops it is.")
         customer_order.append("two scoops")
-        price.append(3.00)
-        flavour_choice()
+        price.append(3.00) 
+        return(scoops)
     elif scoops == 3:
         print("ok, Three scoops it is.")
         price.append(4.00)
@@ -83,41 +82,59 @@ def number_scoops():
     else:
         print("Sorry invalid entry.")
         number_scoops()
-        return(scoops)
+        
+ 
+iceCreamFlavours = {1: "vanilla", 2: "strawberry", 3: "chocolate", 4: "pistacio"}    
 
 def flavour_choice():
-    """
-    Create a list of flavours using tabulate modal so the user can
-    choose easily.
-    """
-    list = []
-    choice = True
+    chosenFlavours=set()
+    print("You see "+ ", ".join(iceCreamFlavours.values())+".")
     while True:
-        flavour = input("Please choose the corrisponding flavour number 1, 2, 3, 4, 5, 6,").int()
-        if flavour in ("1", "2", "3", "4", "5", "6"):
-            break
-        else:
-            flavour = input("incorrect input....\n Please select from").int()
+        try:
+            print(*[f"{number}. {ingredient}" for number, ingredient in iceCreamFlavours.items()], sep="\n")
+            print ("Select the ingredients based on number. Which would you like to grab?")
+            response = int(input("Select ingredients: ").strip()) #strip is a function call, so it has to be written .strip()
+            if response in chosenFlavours:
+                print("You already have that ingredient.")
+                continue
+            elif response not in iceCreamFlavours:
+                print("That is not an ingredient.")
+                continue
+            else:
+                chosenFlavours.add(response)
+            if len(chosenFlavours)==len(iceCreamFlavours):
+                print("Wow that's an amazing ice-cream.")
+                break
+        except ValueError:
+            if input("That is not a number. Do you want to finish the ice-cream? (y/n)").lower()=="y":
+                break
+            print("Please enter an integer!")
+    #now you can print the ingredient names by using the dictionary
+    print("your cone/cup has the following ingredients: " + ", ".join([iceCreamFlavours[i] for i in chosenFlavours]))
+
+    
+    
     #print(flavour)
     #list = [item for item in input(f"Choose your flavours.").split()]
     #print(list)
-    all_rows = flavours.get_all_values()
-    print(all_rows)
+    #all_rows = flavours.get_all_values()
+    #print(all_rows)
     
 
 
-def populate_receipt_worksheet(data):
-    """ 
+#def populate_receipt_worksheet(data):
+""" 
     update the receipt worksheet with the order the customer made
-    """
-    SHEET_receipt.append_row([date,time, question2, scoops, list])
+    
+    SHEET_receipt.append_row([date, time, question2, scoops, list])
     print("would you like a receipt?")
     receipt_worksheet = SHEET.worksheet("receipt")
     receipt_worksheet.append_row(data)
     print("reciept ready to print")
-
+    return(populate_receipt_worksheet)
+"""
 start_order()
-
+flavour_choice()  
 print(f"That will be a total of €{price}")
 print(customer_order)
-retrun(populate_receipt_worksheet)
+
