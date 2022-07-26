@@ -24,7 +24,7 @@ flavours = SHEET.worksheet("flavours")
 # create a list of the customers order
 customer_order = []
 price = []
-scoops = []
+noScoops = []
 list = []
 #flavour = flavours.col_values(1)  #  List of flavours in spreadsheet
 
@@ -56,75 +56,83 @@ def place_order():
     choice = True
     while True:
         holder = input("What would you like a cup or a cone?").lower()
-        if holder in ("cup","cone"):
-            number_scoops()
+        if holder in ("cup", "cone"):
+            flavour_choice()
             break
             
         else:
             holder = input("incorrect input....\n Please select cup or cone").lower()
 
+
+"""
 def number_scoops():
+    
     scoops = int(input("How many scoops? Enter 1, 2 or 3"))
     if scoops == 1:
         print("Ok, one scoop")
         customer_order.append("One scoop.")
         price.append(2.00)
+        noScoops.append(1)
         flavour_choice()
     elif scoops == 2:
         print("Ok, two scoops it is.")
         customer_order.append("two scoops")
         price.append(3.00) 
-        return(scoops)
+        noScoops.append(2)
+        flavour_choice()
     elif scoops == 3:
         print("ok, Three scoops it is.")
+        customer_order.append("Three scoops")
         price.append(4.00)
+        noScoops.append(3)
         flavour_choice()
     else:
         print("Sorry invalid entry.")
         number_scoops()
-        
+"""     
  
-iceCreamFlavours = {1: "vanilla", 2: "strawberry", 3: "chocolate", 4: "pistacio"}    
+iceCreamFlavours = {1: "vanilla", 2: "Chocolate", 3: "Strawberry",
+                    4: "Mint choc", 5: "Caramel", 6: "Pistachio"}
+
 
 def flavour_choice():
     chosenFlavours=set()
-    print("You see "+ ", ".join(iceCreamFlavours.values())+".")
+    print("Here are a list of the flavours we have:")
     while True:
         try:
-            print(*[f"{number}. {ingredient}" for number, ingredient in iceCreamFlavours.items()], sep="\n")
-            print ("Select the ingredients based on number. Which would you like to grab?")
-            response = int(input("Select ingredients: ").strip()) #strip is a function call, so it has to be written .strip()
-            if response in chosenFlavours:
-                print("You already have that ingredient.")
+            print(*[f" {number}. {flavour}" for number, flavour in
+                  iceCreamFlavours.items()], sep="\n")
+            print("Select the flavour based on number 1-6. Which would you like?")
+            response = int(input("Select flavour: ").strip())  # strip function
+            if  response not in iceCreamFlavours:
+                print("That is not a flavour")
                 continue
-            elif response not in iceCreamFlavours:
-                print("That is not an ingredient.")
-                continue
+                if len(chosenFlavours) == 3:
+                    print("Sorry 3 scoops is the maxium i can give you")
+                    break
             else:
                 chosenFlavours.add(response)
-            if len(chosenFlavours)==len(iceCreamFlavours):
-                print("Wow that's an amazing ice-cream.")
-                break
+                if input("Would you like to pick another flavour? (y/n)").lower() == "n":
+                   break
+            
         except ValueError:
-            if input("That is not a number. Do you want to finish the ice-cream? (y/n)").lower()=="y":
+            if input("That is not a number.Do you want to finish the ice-cream? (y/n)").lower() == "y":
                 break
             print("Please enter an integer!")
-    #now you can print the ingredient names by using the dictionary
-    print("your cone/cup has the following ingredients: " + ", ".join([iceCreamFlavours[i] for i in chosenFlavours]))
-
-    
-    
-    #print(flavour)
-    #list = [item for item in input(f"Choose your flavours.").split()]
-    #print(list)
-    #all_rows = flavours.get_all_values()
-    #print(all_rows)
+    # now you can print the flavour names by using the dictionary
+    print("You have choosen the following flavours: " + ", ".join([iceCreamFlavours[i] for i in chosenFlavours]))
+#print(flavour)
+#list = [item for item in input(f"Choose your flavours.").split()]
+#print(list)
+#all_rows = flavours.get_all_values()
+#print(all_rows)
     
 
 
 #def populate_receipt_worksheet(data):
-""" 
-    update the receipt worksheet with the order the customer made
+"""
+ 
+update the receipt worksheet with the order the customer made
     
     SHEET_receipt.append_row([date, time, question2, scoops, list])
     print("would you like a receipt?")
