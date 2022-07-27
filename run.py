@@ -3,7 +3,6 @@ Import gspread in order to update google spreadsheet
 """
 import gspread
 from google.oauth2.service_account import Credentials
-from tabulate import tabulate  # import modale to create a tables for flavours
 import time   # import for timestamp
 from datetime import date, datetime
 
@@ -107,9 +106,9 @@ def flavour_choice():
             if  response not in iceCreamFlavours:
                 print("That is not a flavour")
                 continue
-                if len(chosenFlavours) == 3:
-                    print("Sorry 3 scoops is the maxium i can give you")
-                    break
+            if len(chosenFlavours) == 3:
+                print("Sorry 3 scoops is the maxium i can give you")
+                break
             else:
                 chosenFlavours.add(response)
                 if input("Would you like to pick another flavour? (y/n)").lower() == "n":
@@ -121,11 +120,7 @@ def flavour_choice():
             print("Please enter an integer!")
     # now you can print the flavour names by using the dictionary
     print("You have choosen the following flavours: " + ", ".join([iceCreamFlavours[i] for i in chosenFlavours]))
-#print(flavour)
-#list = [item for item in input(f"Choose your flavours.").split()]
-#print(list)
-#all_rows = flavours.get_all_values()
-#print(all_rows)
+
     
 
 
