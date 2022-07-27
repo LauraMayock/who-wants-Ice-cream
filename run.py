@@ -18,15 +18,14 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("Ice-creams")
 flavours = SHEET.worksheet("flavours")
-list = flavours.col_values(1)[1:]
+flav_list = flavours.col_values(1)[1:]
 
 #  order = SHEET.worksheet("order")
 
 # create a list of the customers order
 customer_order = []
 price = []
-noScoops = []
-#flavour = flavours.col_values(1)  #  List of flavours in spreadsheet
+noScoops = 0
 
 
 
@@ -57,17 +56,41 @@ def place_order():
     while True:
         holder = input("What would you like a cup or a cone?").lower()
         if holder in ("cup", "cone"):
-            flavour_choice()
+            number_scoops()
             break
             
         else:
             holder = input("incorrect input....\n Please select cup or cone").lower()
 
+def number_scoops():
+    global noScoops
+    scoops = int(input("How many scoops? Enter 1, 2 or 3"))
+    if scoops == 1:
+        print("Ok, one scoop")
+        customer_order.append("One scoop.")
+        price.append(2.00)
+        noScoops = 1 
+        flavour_choice()
+    elif scoops == 2:
+        print("Ok, two scoops it is.")
+        customer_order.append("two scoops")
+        price.append(3.00) 
+        noScoops = 2
+        flavour_choice()
+    elif scoops == 3:
+        print("ok, Three scoops it is.")
+        customer_order.append("Three scoops")
+        price.append(4.00)
+        noScoops = 3
+        flavour_choice()
+    else:
+        print("Sorry invalid entry.")
+        number_scoops()
+
 def flavour_choice():
     print("what flavour would you like?")
     flavour_list = []
-    print(flavour_list)
-    for type in list:
+    for type in flav_list:
         flavour_list.append(type)
     num = []
     for i in range(1, 7):
@@ -80,82 +103,38 @@ def flavour_choice():
     type_table.add_row(flavour_list)
     print(type_table)
 
-
-"""
-def number_scoops():
-    
-    scoops = int(input("How many scoops? Enter 1, 2 or 3"))
-    if scoops == 1:
-        print("Ok, one scoop")
-        customer_order.append("One scoop.")
-        price.append(2.00)
-        noScoops.append(1)
-        flavour_choice()
-    elif scoops == 2:
-        print("Ok, two scoops it is.")
-        customer_order.append("two scoops")
-        price.append(3.00) 
-        noScoops.append(2)
-        flavour_choice()
-    elif scoops == 3:
-        print("ok, Three scoops it is.")
-        customer_order.append("Three scoops")
-        price.append(4.00)
-        noScoops.append(3)
-        flavour_choice()
-    else:
-        print("Sorry invalid entry.")
-        number_scoops()
-"""     
-"""
-iceCreamFlavours = {1: "vanilla", 2: "Chocolate", 3: "Strawberry",
-                    4: "Mint choc", 5: "Caramel", 6: "Pistachio"}
-
-
-def flavour_choice():
-    chosenFlavours=set()
-    print("Here are a list of the flavours we have:")
+def iceCreamFlavours():
+    """
+    Chose flavours
+    """
     while True:
         try:
-            print(*[f" {number}. {flavour}" for number, flavour in
-                  iceCreamFlavours.items()], sep="\n")
-            print("Select the flavour based on number 1-6. Which would you like?")
-            response = int(input("Select flavour: ").strip())  # strip function
-            if  response not in iceCreamFlavours:
-                print("That is not a flavour")
+            flv =list(input("what flavour would you like?"))
+            flv.sort()
+            selected_flavour = [int(i)for i in flv]
+            if len(flv) == noScoops:
+                print(f"you have all your {noScoops} you ordered.")
                 continue
-            if len(chosenFlavours) == 3:
-                print("Sorry 3 scoops is the maxium i can give you")
-                break
-            else:
-                chosenFlavours.add(response)
-                if input("Would you like to pick another flavour? (y/n)").lower() == "n":
-                   break
-            
+            for iceCreamFlavours().flv in selected_flavour:
+                if iceCreamFlavours().flv in flav_list.type:
+                    customer_order.append(selected_flavour.type[iceCreamFlavours().flv])
+                    break
+                else:
+                    continue
         except ValueError:
-            if input("That is not a number.Do you want to finish the ice-cream? (y/n)").lower() == "y":
-                break
-            print("Please enter an integer!")
-    # now you can print the flavour names by using the dictionary
-    print("You have choosen the following flavours: " + ", ".join([iceCreamFlavours[i] for i in chosenFlavours]))
-
-    
+            print(f"Please pick a number between 1-7 {flv} is invalid")
 
 
-#def populate_receipt_worksheet(data):
-"""
-"""
-update the receipt worksheet with the order the customer made
-    
-    SHEET_receipt.append_row([date, time, question2, scoops, list])
-    print("would you like a receipt?")
-    receipt_worksheet = SHEET.worksheet("receipt")
-    receipt_worksheet.append_row(data)
-    print("reciept ready to print")
-    return(populate_receipt_worksheet)
-"""
+# now you can print the flavour names by using the dictionary
+# print("You have choosen the following flavours: " + ", ".join([iceCreamFlavours[i] for i in choiceFlavours]))
+
+
 start_order()
 flavour_choice()  
+iceCreamFlavours()
 print(f"That will be a total of €{price}")
 print(customer_order)
 
+"""
+
+"""
