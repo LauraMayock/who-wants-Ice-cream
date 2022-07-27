@@ -3,6 +3,7 @@ Import gspread in order to update google spreadsheet
 """
 import gspread
 from google.oauth2.service_account import Credentials
+from prettytable import PrettyTable
 import time   # import for timestamp
 from datetime import date, datetime
 
@@ -17,7 +18,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("Ice-creams")
 flavours = SHEET.worksheet("flavours")
-flavour_list = flavours.col_values(1)[1:]
+list = flavours.col_values(1)[1:]
 
 #  order = SHEET.worksheet("order")
 
@@ -25,7 +26,6 @@ flavour_list = flavours.col_values(1)[1:]
 customer_order = []
 price = []
 noScoops = []
-list = []
 #flavour = flavours.col_values(1)  #  List of flavours in spreadsheet
 
 
@@ -66,15 +66,21 @@ def place_order():
 def flavour_choice():
     print("what flavour would you like?")
     flavour_list = []
-    for iceCream in flavour_list:
-        flavour_choice.append(iceCream)
+    print(flavour_list)
+    for type in list:
+        flavour_list.append(type)
     num = []
-    for i in range(1, 6):
+    for i in range(1, 7):
         num.append(i)
 
-    flavour_choice().names = dict(zip(num, flavour_list))
+    flavour_choice.type = dict(zip(num, flavour_list))
 
-    return flavour_list
+    type_table = PrettyTable()
+    type_table.field_names = num
+    type_table.add_row(flavour_list)
+    print(type_table)
+
+
 """
 def number_scoops():
     
