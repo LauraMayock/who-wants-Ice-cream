@@ -17,6 +17,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("Ice-creams")
 flavours = SHEET.worksheet("flavours")
+flavour_list = flavours.col_values(1)[1:]
 
 #  order = SHEET.worksheet("order")
 
@@ -62,7 +63,18 @@ def place_order():
         else:
             holder = input("incorrect input....\n Please select cup or cone").lower()
 
+def flavour_choice():
+    print("what flavour would you like?")
+    flavour_list = []
+    for iceCream in flavour_list:
+        flavour_choice.append(iceCream)
+    num = []
+    for i in range(1, 6):
+        num.append(i)
 
+    flavour_choice().names = dict(zip(num, flavour_list))
+
+    return flavour_list
 """
 def number_scoops():
     
@@ -89,7 +101,7 @@ def number_scoops():
         print("Sorry invalid entry.")
         number_scoops()
 """     
- 
+"""
 iceCreamFlavours = {1: "vanilla", 2: "Chocolate", 3: "Strawberry",
                     4: "Mint choc", 5: "Caramel", 6: "Pistachio"}
 
@@ -126,7 +138,7 @@ def flavour_choice():
 
 #def populate_receipt_worksheet(data):
 """
- 
+"""
 update the receipt worksheet with the order the customer made
     
     SHEET_receipt.append_row([date, time, question2, scoops, list])
