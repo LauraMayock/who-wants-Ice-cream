@@ -109,28 +109,37 @@ def iceCreamFlavours():
     """
     while True:
         try:
-            flv =list(input("what flavour would you like?"))
+            flv = list(input("what flavour would you like?"))
             flv.sort()
             selected_flavour = [int(i)for i in flv]
+            if len(flv) >= noScoops:
+                print(f"You have chosen {flv}. Thats too many. You wanted {noScoops} scoops.")
+                continue
+            if len(flv) <= noScoops:
+                print(f"You havent chosen enough flavours. You said you wanted {noScoops}")
+                continue
             if len(flv) == noScoops:
                 print(f"you have all your {noScoops} you ordered.")
+                customer_order.append(selected_flavour.type[iceCreamFlavours().flv])
                 continue
-            for iceCreamFlavours().flv in selected_flavour:
-                if iceCreamFlavours().flv in flav_list.type:
-                    customer_order.append(selected_flavour.type[iceCreamFlavours().flv])
-                    break
+            for selected_flavour.flv in selected_flavour:
+                if selected_flavour.flv in list.type:
+                    print(f"You choose {selected_flavour}")
                 else:
-                    continue
+                    print(f"That is not a valid choice. Please try again.")
+                    break
         except ValueError:
-            print(f"Please pick a number between 1-7 {flv} is invalid")
-
-
+            print("Please type a number between 1-7")
+    
+           
+            #for iceCreamFlavours().flv in selected_flavour:
+            
+        #except ValueError:
+          #  print(f"Please pick a number between 1-7 {flv} is invalid")
 # now you can print the flavour names by using the dictionary
-# print("You have choosen the following flavours: " + ", ".join([iceCreamFlavours[i] for i in choiceFlavours]))
+# print("You have choosen the following flavours: " + ", ".join([selected_flavour[i] for i in iceCreamFlavours()]))
 
-
-start_order()
-flavour_choice()  
+start_order()  
 iceCreamFlavours()
 print(f"That will be a total of €{price}")
 print(customer_order)
