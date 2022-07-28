@@ -112,38 +112,30 @@ def iceCreamFlavours():
             flv = list(input("what flavour would you like?"))
             flv.sort()
             selected_flavour = [int(i)for i in flv]
-            if len(flv) >= noScoops:
+            if len(flv) > noScoops:
                 print(f"You have chosen {flv}. Thats too many. You wanted {noScoops} scoops.")
                 continue
-            if len(flv) <= noScoops:
+            if len(flv) < noScoops:
                 print(f"You havent chosen enough flavours. You said you wanted {noScoops}")
                 continue
             if len(flv) == noScoops:
-                print(f"you have all your {noScoops} you ordered.")
-                customer_order.append(selected_flavour.type[iceCreamFlavours().flv])
-                continue
-            for selected_flavour.flv in selected_flavour:
-                if selected_flavour.flv in list.type:
-                    print(f"You choose {selected_flavour}")
-                else:
-                    print(f"That is not a valid choice. Please try again.")
-                    break
+                print(f"you have chosen {selected_flavour}")
+                customer_order.append(selected_flavour)
+                sprinkles()
+                break
         except ValueError:
             print("Please type a number between 1-7")
-    
-           
-            #for iceCreamFlavours().flv in selected_flavour:
-            
-        #except ValueError:
-          #  print(f"Please pick a number between 1-7 {flv} is invalid")
+# print("You have choosen the following flavours: " + ", ".join([selected_flavour[i] for i in iceCreamFlavours()]))         
 # now you can print the flavour names by using the dictionary
-# print("You have choosen the following flavours: " + ", ".join([selected_flavour[i] for i in iceCreamFlavours()]))
+# 
+def sprinkles():
+    if noScoops == 3:
+        print("There is an offer on at the moment. Free sprinkles when you get 3 scoops")
+    else:
+        print("Would you like sprinkes with that? It will be and extra 50c")
+
 
 start_order()  
 iceCreamFlavours()
 print(f"That will be a total of €{price}")
 print(customer_order)
-
-"""
-
-"""
