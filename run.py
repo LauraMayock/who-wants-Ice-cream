@@ -29,6 +29,8 @@ customer_order = []
 price = []
 noScoops = 0
 selected_flavour = []
+sprinkes = []
+
 
 
 
@@ -133,6 +135,8 @@ def iceCreamFlavours():
             print("Please type a number between 1-7")
 
 
+
+
 def sprinkles():
     if noScoops == 3:
         print("There is an offer on at the moment. Free sprinkles when you get 3 scoops")
@@ -146,7 +150,21 @@ def sprinkles():
             print("Sorry invalid entry.")
             print("Plese enter yes or no.")
     else:
-        print("Would you like sprinkes with that? It will be and extra 50c")
+        buy_sprinkles()
+
+def buy_sprinkles():
+    question3 = input("Would you like sprinkes with that? It will be and extra 50c yes/no")
+    while question3.lower() == ("yes"):
+        print("Added sprinkes")
+        sprinkles().append(".50c")
+        print_receipt()
+        break
+    if question3.lower() == ("no"):
+        print_receipt()
+    else:
+        print("Plese enter yes or no.")
+ 
+
 
 
 
@@ -158,7 +176,8 @@ def print_receipt():
     receipt_table = PrettyTable()
     receipt_table.add_row([f'Date: {date}'])
     receipt_table.add_row([f"Order: {customer_order}"])
-    receipt_table.add_row([f"Total: €{price}"])
+    total = int(sprinkles)+ int(price)
+    receipt_table.add_row([f"Total: €{total}"])
 
     
     print(receipt_table)
@@ -167,6 +186,5 @@ def print_receipt():
 start_order()  
 iceCreamFlavours()
 print_receipt()
-#print(f"That will be a total of €{price}")
 
 
