@@ -17,8 +17,10 @@ CREDS = Credentials.from_service_account_file("CREDS.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("Ice-creams")
+receipt = SHEET.worksheet(("receipt"))
 flavours = SHEET.worksheet("flavours")
 flav_list = flavours.col_values(1)[1:]
+
 
 order = SHEET.worksheet("receipt")
 
@@ -27,6 +29,7 @@ customer_order = []
 price = []
 noScoops = 0
 selected_flavour = []
+
 
 
 
@@ -51,7 +54,7 @@ def start_order():
         print("Sorry invalid entry.")
         print("Plese enter yes or no.")
         start_order()
-        
+
 
 def place_order():
     choice = True
@@ -133,17 +136,30 @@ def iceCreamFlavours():
 def sprinkles():
     if noScoops == 3:
         print("There is an offer on at the moment. Free sprinkles when you get 3 scoops")
+        answer = input("yes/no")
+        if answer.lower() == ("yes"):
+            print("Added sprinkes")
+            customer_order.append("Free sprinkles")
+        elif answer.lower() == ("no"):
+            print("Ok, no sprinkes")
+        else:
+            print("Sorry invalid entry.")
+            print("Plese enter yes or no.")
     else:
         print("Would you like sprinkes with that? It will be and extra 50c")
+
 
 
 def print_receipt():
     """
     Print receipt
     """
+   
     receipt_table = PrettyTable()
     receipt_table.add_row([f'Date: {date}'])
-    
+    receipt_table.add_row([f"Order: {customer_order}"])
+    receipt_table.add_row([f"Total: €{price}"])
+
     
     print(receipt_table)
 
@@ -151,10 +167,6 @@ def print_receipt():
 start_order()  
 iceCreamFlavours()
 print_receipt()
-print(f"That will be a total of €{price}")
-
-customer_order.append(str(now))
-customer_order.append(now)
+#print(f"That will be a total of €{price}")
 
 
-print(customer_order)
