@@ -26,12 +26,9 @@ order = SHEET.worksheet("receipt")
 
 # create a list of the customers order
 customer_order = []
-price = []
+price = 0
 noScoops = 0
 selected_flavour = []
-sprinkes = []
-
-
 
 
 
@@ -40,10 +37,23 @@ now = datetime.now()
 date = now.strftime("%c")
 
 
+
+
 def start_order():
     """
     Function to welcome the customer and ask if they would like to order.
     """
+    
+ 
+#  ████████╗██╗  ██╗███████╗    ██╗███╗   ██╗███████╗██╗██████╗ ███████╗    ███████╗ ██████╗ ██████╗  ██████╗ ██████╗ 
+#  ╚══██╔══╝██║  ██║██╔════╝    ██║████╗  ██║██╔════╝██║██╔══██╗██╔════╝    ██╔════╝██╔════╝██╔═══██╗██╔═══██╗██╔══██╗
+#     ██║   ███████║█████╗      ██║██╔██╗ ██║███████╗██║██║  ██║█████╗      ███████╗██║     ██║   ██║██║   ██║██████╔╝
+#     ██║   ██╔══██║██╔══╝      ██║██║╚██╗██║╚════██║██║██║  ██║██╔══╝      ╚════██║██║     ██║   ██║██║   ██║██╔═══╝ 
+#     ██║   ██║  ██║███████╗    ██║██║ ╚████║███████║██║██████╔╝███████╗    ███████║╚██████╗╚██████╔╝╚██████╔╝██║     
+#     ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝╚═════╝ ╚══════╝    ╚══════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝     
+#                                                                                                                     
+                                                                                                          
+
     print("Hi, Welcome to The Inside Scoop")
     print("Would you like to place and order?")
     question1 = input("Please enter yes or no.")
@@ -75,19 +85,19 @@ def number_scoops():
     if scoops == 1:
         print("Ok, one scoop")
         customer_order.append("One scoop.")
-        price.append(2.00)
+        price = 2.00
         noScoops = 1 
         flavour_choice()
     elif scoops == 2:
         print("Ok, two scoops it is.")
         customer_order.append("two scoops")
-        price.append(3.00) 
+        price = 3.00 
         noScoops = 2
         flavour_choice()
     elif scoops == 3:
         print("ok, Three scoops it is.")
         customer_order.append("Three scoops")
-        price.append(4.00)
+        price = 4.00
         noScoops = 3
         flavour_choice()
     else:
@@ -129,7 +139,6 @@ def iceCreamFlavours():
             if len(flv) == noScoops:
                 print(f"you have chosen {selected_flavour}")
                 customer_order.append(selected_flavour)
-                sprinkles()
                 break
         except ValueError:
             print("Please type a number between 1-7")
@@ -138,31 +147,33 @@ def iceCreamFlavours():
 
 
 def sprinkles():
+    global price
     if noScoops == 3:
         print("There is an offer on at the moment. Free sprinkles when you get 3 scoops")
         answer = input("yes/no")
         if answer.lower() == ("yes"):
             print("Added sprinkes")
+            print_receipt()
             customer_order.append("Free sprinkles")
         elif answer.lower() == ("no"):
             print("Ok, no sprinkes")
         else:
             print("Sorry invalid entry.")
             print("Plese enter yes or no.")
-    else:
-        buy_sprinkles()
-
-def buy_sprinkles():
-    question3 = input("Would you like sprinkes with that? It will be and extra 50c yes/no")
-    while question3.lower() == ("yes"):
-        print("Added sprinkes")
-        sprinkles().append(".50c")
-        print_receipt()
-        break
-    if question3.lower() == ("no"):
-        print_receipt()
-    else:
-        print("Plese enter yes or no.")
+    if noScoops < 3:
+        question3 = input("Would you like sprinkles with that? It will be and extra 50c yes/no")
+        if question3.lower() == ("yes"):
+            print("Added sprinkles")
+            if noScoops == 1:
+                price = 2.5
+                print_receipt()
+            if noScoops == 2:
+                price = 3.50
+                print_receipt()
+        elif question3.lower() == ("no"):
+            print_receipt()
+        else:
+            print("Plese enter yes or no.")
  
 
 
@@ -176,15 +187,13 @@ def print_receipt():
     receipt_table = PrettyTable()
     receipt_table.add_row([f'Date: {date}'])
     receipt_table.add_row([f"Order: {customer_order}"])
-    total = int(sprinkles)+ int(price)
-    receipt_table.add_row([f"Total: €{total}"])
+    receipt_table.add_row([f"Total: €{price}"])
 
     
-    print(receipt_table)
+print_receipt()
 
 
 start_order()  
 iceCreamFlavours()
+sprinkles()
 print_receipt()
-
-
