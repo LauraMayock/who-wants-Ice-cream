@@ -1,24 +1,17 @@
-<img src="https://i.ibb.co/3MN6HbS/large-screen.png" alt="Screan show of game"></a>
+<img src="https://i.ibb.co/FxY2gH5/welcome-screen.png alt=welcome-screen">
 
-# **_Rock Paper Scissors Lizard Spock - Portfolio Project 2 - HTML, CSS & Javascript_**
-Created by the producers of the hit TV series The Big bang theory as a way for the 2 beloved charactors, Sheldon Cooper and Rajesh Koothrappali to settle a dispute about what to watch on TV. Rock Paper Scissors Lizard Spock is a fun twist on the old game of two people using only your hands and some simple rules. 
+# **_Who wants Ice-cream - Portfolio Project 3 - Python_**
+Who want Ice-cream is a command-line user interface providing the customer with the ability to order an ice cream cone or cup of choice. This project was built using Python.
 
-You can view the live site here - <a href=" https://lauramayock.github.io/rock-paper-scissors-lizard-spock/" target="_blank"> Rock Paper Scissors Lizard Spock 
+You can view the live site here - <a href=" https://github.com/LauraMayock/who-wants-Ice-cream" target="_blank"> Who wants ice-cream? 
 ----
 # Content
 
 * [Objectives](<#objective>)
 * [User Experience](<#user-experience-ux>)
-    * [Target Audience](<#target-audience>)
-    * [First time user](<#user-experience-ux>)
-    * [Return user](<#user-experience-ux>)
-    * [Site Aims](<#site-aims>)
-    * [Design Wireframes](<#design-wireframes>)
-    * [Site Structure](<#site-structure>)
-    * [Design Choices](<#design-choices>)
-    * [Imagery](<#Imagery>)
-    * [Colour Scheme](<#colour-scheme>)
-    * [Typography](<#typography>)
+    * [User](<#user-experience-ux>)
+    * [User Stories](<#user-stories>)
+    * [Flow Chart](<#flow-chart>)
 * [Features](<#features>)
     * [Favicon](<#favicon>)
     * [Title Bar](<#title-bar>)
@@ -47,88 +40,36 @@ You can view the live site here - <a href=" https://lauramayock.github.io/rock-p
 
 # Objective
 
-The goal is to create an interactive front-end site that provides entertainment for people of all ages. Users will be able to play a fun and entertaining game of Rock Paper Scissor Lizard Spock against the computer and, after each round, see a clear message on who the winner was and what the deciding factor was. 
+The goal is to create an interactive site that used a terminal that allows the user to go thourgh the process of ordering an ice-cream as they would if they were in an ice-cream shop.
 
 [Back to top](#content)
 
 # User Experience (UX)
 
-## Target Audience
-* With its straightforward rules and clear messaging, this game will be accessible to everyone but will be a favourite for those fans of the hit TV show that originated "The big bang theory".
+## User
+* As a user, I want a clear understanding of the purpose of the page and the ability to use it intuitively with its clear and thought-out design. 
+* To have a clear layout and a clear understanding of what information is expected of me.
+* To be prompted if my input is invalid. 
+
+## User Stories
+* As a user, I want a simple and interactive way to order my favourite ice-cream.
+* I want clear guidance throughout.
+* I want a receipt with my purchase. Giving a clear outline of my purchase and the cost.
 
 
-## First time user
-As a first-time visitor, I want a clear understanding of the purpose of the page and the ability to use it intuitively with its clear and thought-out design. Although the rules are laid out in the help section, I can delve right in and learn while playing as the deciding factor of each round is displayed.
+## Flow Chart
+Using the website [lucidchart](https://www.lucidchart.com/) The flow chart below gives a simplified layout of what I was hoping to achieve. The shapes highlighted by the yellow colour show the stages where the user will be asked for simple input. the red boxes symbolise the negative input or an invalid input. While the green shows a positive response from the user.
 
-## Return user
-As a returning user, I can enjoy the game on the go or in my leisure time as a fun way to pass the time.
-
-## Site Aims
- * To provide the user with a game that is easy to understand and play. 
- * To offer information on the rules clearly and concisely. 
-
-
-## Design Wireframes
-The innitial goals and scope of the website were worked on and planned using figma. The sturctue and scope of the website differs from the initial planning as i deemed it important to initially approach the project considering all possible feature that would be benificial for both the customer and the user. This provide a good basis for a minimum viable product as well as future add ons. 
-
-<img src="https://i.ibb.co/tp0fcpf/Figma.png" alt="Figma project 2 brainstorm">Hero image</a>
-
-Wireframes were created using Balsamiq:
-
-<details><summary> Balsamiq wireFrames</summary>
-
-<img src="https://i.ibb.co/Kx7g61N/Balsamiq-Desktop.png" alt="Balsamiq-Desktop-wireframe">Desktop layout</a>
-
-<img src="https://i.ibb.co/CvmcCwG/Balsamiq-Tablet.png" alt="Balsamiq-Tablet">Tablet Layout</a>
-
-<img src="https://i.ibb.co/vcZKwZh/Balsamiq-Phone.png" alt="Balsamiq-Phone">SmartPhone</a>
-
-<img src="https://i.ibb.co/GC2kDD2/Balsamiq-Notes.png" alt="Balsamiq-Notes">Notes</a>
-
-</details>
-
-## Site Stucture
-
-Consisting of one page, the site has a simple layout. A modal at the top left corner provides a quick outline of the rules. This makes it very convenient to play on the go. 
-
-<img src="https://i.ibb.co/gjRhYRj/phone.png" alt="phone">Phone</a>
-<img src="https://i.ibb.co/yYbbYkd/desktop.png" alt="desktop">DeskTop</a>
-<img src="https://i.ibb.co/6s9TBYx/tablet.png" alt="tablet">Tablet</a>
-
-## Design Choices
-
-The simple design makes it user-friendly for all ages and very accessible. To ensure this, I tried to meet as much of the criteria laid out by devtool lighthouse testing. 
-
-### Imagery
-
-My original choice was to use the connection with the popular TV series to make the site appealing to their broad fan base. The image was sourced from [Clip art Key](https://www.clipartkey.com/). But in the end, id decided to use a simple but eye-catching CSS colour-changing background to reach a broader user base.
- 
- <img src="https://i.ibb.co/pvc2bP2/Clipart-Key-2855975-1.png" alt="Hero image of big bang Theory charactors"></a>
- 
-<img src="https://i.ibb.co/1vdTcwJ/Colour-choice.png" alt="Origional game">Origional image</a>
-
-
-### Colour scheme
-
-My final choice of colours was chosen to compliment the background colours. The simple choice of black and white against the ever changing background colour not only provide accessibiliy but is a blend.
-
-<img src="https://i.ibb.co/vs62ycr/screen-shot-of-game.png" alt="screen-shot-of-game"></a>
-
-### Typography
-
-I chose two fonts from the google font gallery. Heebo, using the extra bold option for all main text and Moanrope for the Modal text in a lighter weight. I chose Sans- serif as the font family to fall back on if both Heebo and Monrope would still fit in with the feel of the page. I also decided to use [Font Awsome icons](https://fontawesome.com/icons) to make it visually appealing and highlight the traditional hand signs used while playing the game. 
-
-<img src="https://i.ibb.co/crvy7kj/font-icon-buttons.png" alt="font-icon-buttons"></a>
-
+<img src="https://i.ibb.co/zhXVhNm/Blank-diagram-1.jpg" alt="Flow Chart">Flow Chart</a>
 
 [Back to top](<#content>)
 
 # Features
 
-## Favicon
-* A favicon has been added as a fun touch and to make the site tap memorable for repeat users.
+## Header
+* Using [Patorjk](https://patorjk.com/) i created a simple logo for the shop.
 
-<img src="https://i.ibb.co/hYqGdtP/favicon.png" alt="favicon"></a>
+<img src="https://i.ibb.co/y6wJZQH/logo.png" alt="logo"></a>
 
 ## Title Bar
 

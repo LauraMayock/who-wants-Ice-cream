@@ -5,7 +5,11 @@ import gspread
 from google.oauth2.service_account import Credentials
 from prettytable import PrettyTable
 from datetime import datetime   # import for timestamp
+import colorama  # import for font colour
+from colorama import Fore, Style
 
+#initialize colorama
+colorama.init(autoreset=True)
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -41,18 +45,18 @@ def start_order():
     Function to welcome the customer and ask if
     they would like to order.
     """
-    print("██████╗██╗  ██╗███████╗   ██╗███╗   ██╗██████╗██╗██████╗ ██████╗")
-    print("╚═██╔═╝██║  ██║██╔════╝   ██║████╗  ██║██╔═══╝██║██╔══██╗██╔═══╝")
-    print("  ██║  ███████║█████╗     ██║██╔██╗ ██║██████╗██║██║  ██║█████╗")
-    print("  ██║  ██╔══██║██╔══╝     ██║██║╚██╗██║╚═══██║██║██║  ██║██╔══╝")
-    print("  ██║  ██║  ██║██████╗    ██║██║ ╚████║██████║██║██████╔╝██████╗")
-    print("  ╚═╝  ╚═╝  ╚═╝╚═════╝    ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝╚═════╝ ╚════╝")
-    print("███████╗ ██████╗ ██████╗  ██████╗ ██████╗")
-    print("██╔════╝██╔════╝██╔═══██╗██╔═══██╗██╔══██╗")
-    print("███████╗██║     ██║   ██║██║   ██║██████╔╝")
-    print("╚════██║██║     ██║   ██║██║   ██║██╔═══╝")
-    print("███████║╚██████╗╚██████╔╝╚██████╔╝██║")
-    print("╚══════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝")
+    print("#██████╗██╗  ██╗███████╗   ██╗███╗   ██╗██████╗██╗██████╗ ██████╗")
+    print("#╚═██╔═╝██║  ██║██╔════╝   ██║████╗  ██║██╔═══╝██║██╔══██╗██╔═══╝")
+    print("#  ██║  ███████║█████╗     ██║██╔██╗ ██║██████╗██║██║  ██║█████╗")
+    print("#  ██║  ██╔══██║██╔══╝     ██║██║╚██╗██║╚═══██║██║██║  ██║██╔══╝")
+    print("#  ██║  ██║  ██║██████╗    ██║██║ ╚████║██████║██║██████╔╝██████╗")
+    print("#  ╚═╝  ╚═╝  ╚═╝╚═════╝    ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝╚═════╝ ╚════╝")
+    print("#███████╗ ██████╗ ██████╗  ██████╗ ██████╗")
+    print("#██╔════╝██╔════╝██╔═══██╗██╔═══██╗██╔══██╗")
+    print("#███████╗██║     ██║   ██║██║   ██║██████╔╝")
+    print("#╚════██║██║     ██║   ██║██║   ██║██╔═══╝")
+    print("#███████║╚██████╗╚██████╔╝╚██████╔╝██║")
+    print("#╚══════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝")
     print("Hi, Welcome to The Inside Scoop")
     print("Would you like to place an order?")
     question1 = input("Please enter yes or no.")
@@ -62,8 +66,8 @@ def start_order():
         print("Ok, let me know when you have decided.")
         start_order()
     else:
-        print("Sorry invalid entry.")
-        print("Plese enter yes or no.")
+        print(Fore.RED + "Sorry invalid entry.")
+        print(Fore.RED + "Plese enter yes or no.")
         start_order()
 
 
@@ -79,7 +83,7 @@ or a cone?").lower()
             number_scoops()
             break
         else:
-            holder = input("incorrect input....\n\
+            holder = input(Fore.RED + "incorrect input....\n\
 Please select cup or cone").lower()
 
 
@@ -105,7 +109,7 @@ def number_scoops():
         noScoops = 3
         flavour_choice()
     else:
-        print("Sorry invalid entry.")
+        print(Fore.RED + "Sorry invalid entry.")
         number_scoops()
 
 
@@ -140,11 +144,11 @@ def iceCreamFlavours():
             flv.sort()
             selected_flavour = [int(i)for i in flv]
             if len(flv) > noScoops:
-                print(f"You have chosen {flv}. Thats too many.\
+                print(Fore.RED + f"You have chosen {flv}. Thats too many.\
                      You wanted {noScoops} scoops.")
                 continue
             if len(flv) < noScoops:
-                print(f"You havent chosen enough flavours.\
+                print(Fore.RED + f"You havent chosen enough flavours.\
                      You said you wanted {noScoops}")
                 continue
             if len(flv) == noScoops:
@@ -152,7 +156,7 @@ def iceCreamFlavours():
                 customer_order.append(selected_flavour)
                 break
         except ValueError:
-            print("Please type a number between 1-7")
+            print(Fore.RED + "Please type a number between 1-6")
 
 
 def sprinkles():
@@ -172,7 +176,7 @@ Free sprinkles when you get 3 scoops")
         elif answer.lower() == ("no"):
             print("Ok, no sprinkes")
         else:
-            print("Sorry invalid entry.")
+            print(Fore.RED + "Sorry invalid entry.")
             print("Plese enter yes or no.")
     if noScoops < 3:
         question3 = input("Would you like sprinkles with that?\
@@ -188,7 +192,7 @@ It will be and extra 50c yes/no")
         elif question3.lower() == ("no"):
                 print_receipt()
         else:
-            print("Plese enter yes or no.")
+            print(Fore.RED + "Plese enter yes or no.")
             sprinkles()
 
 
@@ -196,10 +200,11 @@ def flavour_names():
     """
     Add text
     """
-    cell = flavours.findall([selected_flavour])
-    flav_choice = flavours.row_values([selected_flavour])
+    flav_choice = []
+    for x in selected_flavour:
+        flav_choice.append(flav_list[x -1])
     print(flav_choice)
-    print(cell)
+
 
 def print_receipt():
     """
@@ -207,7 +212,7 @@ def print_receipt():
     """
     receipt_table = PrettyTable()
     receipt_table.add_row([f'Date: {date}'])
-    receipt_table.add_row([f"Order: {customer_order}"])
+    receipt_table.add_row([f"Order: {customer_order} + {flav_choice}"])
     receipt_table.add_row([f"Total: €{price}"])
     print(receipt_table)
 
