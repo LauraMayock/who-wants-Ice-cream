@@ -7,6 +7,7 @@ from prettytable import PrettyTable
 from datetime import datetime   # import for timestamp
 import colorama  # import for font colour
 from colorama import Fore, Style
+import time,os,sys
 
 #initialize colorama
 colorama.init(autoreset=True)
@@ -38,13 +39,34 @@ selected_flavour = []
 now = datetime.now()
 date = now.strftime("%c")
 
+def type_print(text):
+    """
+    code taken from www.101computing.net
+    """
+    for shop in text:
+        sys.stdout.write(shop)
+        sys.stdout.flush()
+        time.sleep(0.05)
 
 
-def start_order():
+def input_req(text):
     """
-    Function to welcome the customer and ask if
-    they would like to order.
+    code taken from www.101computing.net
     """
+    for shop in text:
+        sys.stdout.write(shop)
+        sys.stdout.flush()
+        time.sleep(0.05)
+    value = input()
+    return value
+
+
+def clearScreen():
+    os.system("clear")
+
+
+def welcome():
+
     print("#██████╗██╗  ██╗███████╗   ██╗███╗   ██╗██████╗██╗██████╗ ██████╗")
     print("#╚═██╔═╝██║  ██║██╔════╝   ██║████╗  ██║██╔═══╝██║██╔══██╗██╔═══╝")
     print("#  ██║  ███████║█████╗     ██║██╔██╗ ██║██████╗██║██║  ██║█████╗")
@@ -57,18 +79,28 @@ def start_order():
     print("#╚════██║██║     ██║   ██║██║   ██║██╔═══╝")
     print("#███████║╚██████╗╚██████╔╝╚██████╔╝██║")
     print("#╚══════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝")
-    print("Hi, Welcome to The Inside Scoop")
-    print("Would you like to place an order?")
-    question1 = input("Please enter yes or no.")
+    start_order()
+
+
+def start_order():
+    """
+    Function to welcome the customer and ask if
+    they would like to order.
+    """
+    type_print("Hi, Welcome to The Inside Scoop")
+    type_print("\nWould you like to place an order?")
+    question1 = input_req("\nPlease enter yes or no.")
     if question1.lower() == ("yes"):
         place_order()
     elif question1.lower() == ("no"):
-        print("Ok, let me know when you have decided.")
+        type_print("Ok, let me know when you have decided.")
+        clearScreen()
         start_order()
     else:
         print(Fore.RED + "Sorry invalid entry.")
         print(Fore.RED + "Plese enter yes or no.")
-        start_order()
+        welcome()
+        
 
 
 def place_order():
@@ -77,13 +109,13 @@ def place_order():
     """
     choice = True
     while True:
-        holder = input("What would you like a cup \
+        holder = input_req("What would you like a cup \
 or a cone?").lower()
         if holder in ("cup", "cone"):
             number_scoops()
             break
         else:
-            holder = input(Fore.RED + "incorrect input....\n\
+            holder = input_req(Fore.RED + "incorrect input....\n\
 Please select cup or cone").lower()
 
 
@@ -92,24 +124,24 @@ def number_scoops():
     Text goes here.
     """
     global noScoops
-    scoops = int(input("How many scoops? Enter 1, 2 or 3"))
+    scoops = int(input_req("How many scoops? Enter 1, 2 or 3"))
     if scoops == 1:
-        print("Ok, one scoop")
+        type_print("Ok, one scoop")
         customer_order.append("One scoop.")
         noScoops = 1
         flavour_choice()
     elif scoops == 2:
-        print("Ok, two scoops it is.")
+        type_print("Ok, two scoops it is.")
         customer_order.append("two scoops")
         noScoops = 2
         flavour_choice()
     elif scoops == 3:
-        print("ok, Three scoops it is.")
+        type_print("ok, Three scoops it is.")
         customer_order.append("Three scoops")
         noScoops = 3
         flavour_choice()
     else:
-        print(Fore.RED + "Sorry invalid entry.")
+        type_print(Fore.RED + "Sorry invalid entry.")
         number_scoops()
 
 
@@ -117,7 +149,7 @@ def flavour_choice():
     """
     Text goes here.
     """
-    print("what flavour would you like?")
+    type_print("what flavour would you like?")
     flavour_list = []
     for type in flav_list:
         flavour_list.append(type)
@@ -140,24 +172,24 @@ def iceCreamFlavours():
     global selected_flavour
     while True:
         try:
-            flv = list(input("what flavour would you like?"))
+            flv = list(input_req("what flavour would you like?"))
             flv.sort()
             selected_flavour = [int(i)for i in flv]
             if len(flv) > noScoops:
-                print(Fore.RED + f"You have chosen {flv}. Thats too many.\
+                type_print(Fore.RED + f"You have chosen {flv}. Thats too many.\
                      You wanted {noScoops} scoops.")
                 continue
             if len(flv) < noScoops:
-                print(Fore.RED + f"You havent chosen enough flavours.\
+                type_print(Fore.RED + f"You havent chosen enough flavours.\
                      You said you wanted {noScoops}")
                 continue
             if len(flv) == noScoops:
-                print(f"you have chosen {selected_flavour}")
+                type_print(f"you have chosen {selected_flavour}")
                 customer_order.append(selected_flavour)
                 break
         except ValueError:
-            print(Fore.RED + "Please type a number between 1-6")
-
+            type_print(Fore.RED + "Please type a number between 1-6")
+        clearScreen()
 
 def sprinkles():
     """
@@ -165,24 +197,24 @@ def sprinkles():
     """
     global price
     if noScoops == 3:
-        print("There is an offer on at the moment.\
+        type_print("There is an offer on at the moment.\
 Free sprinkles when you get 3 scoops")
         answer = input("yes/no")
         if answer.lower() == ("yes"):
-            print("Added sprinkes")
+            type_print("Added sprinkes")
             price = 4.00
             print_receipt()
             customer_order.append("Free sprinkles")
         elif answer.lower() == ("no"):
-            print("Ok, no sprinkes")
+            type_print("Ok, no sprinkes")
         else:
-            print(Fore.RED + "Sorry invalid entry.")
-            print("Plese enter yes or no.")
+            type_print(Fore.RED + "Sorry invalid entry.")
+            type_print("Plese enter yes or no.")
     if noScoops < 3:
-        question3 = input("Would you like sprinkles with that?\
+        question3 = input_req("Would you like sprinkles with that?\
 It will be and extra 50c yes/no")
         if question3.lower() == ("yes"):
-            print("Added sprinkles")
+            type_print("Added sprinkles")
             if noScoops == 1:
                 price = 2.5
                 print_receipt()
@@ -192,8 +224,9 @@ It will be and extra 50c yes/no")
         elif question3.lower() == ("no"):
                 print_receipt()
         else:
-            print(Fore.RED + "Plese enter yes or no.")
+            type_print(Fore.RED + "Plese enter yes or no.")
             sprinkles()
+
 
 
 def flavour_names():
@@ -216,6 +249,7 @@ def print_receipt():
     receipt_table.add_row([f"Total: €{price}"])
     print(receipt_table)
 
+welcome()
 start_order()
 iceCreamFlavours()
 sprinkles()
