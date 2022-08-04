@@ -11,18 +11,15 @@ You can view the live site here - <a href=" https://github.com/LauraMayock/who-w
 * [User Experience](<#user-experience-ux>)
     * [User](<#user-experience-ux>)
     * [User Stories](<#user-stories>)
+    * [Owner of site](<#Owner-of-site>)
     * [Flow Chart](<#flow-chart>)
 * [Features](<#features>)
-    * [Favicon](<#favicon>)
-    * [Title Bar](<#title-bar>)
-    * [Modal](<#modal>)
-    * [declaration of win](<#declaration-of-winning-party>)
-    * [scoreboard](<#scoreboard>)
-    * [player V computer](<#palyer-v-computer>)
-    * [Round Decider](<#round-decider>)
-    * [players-choice](<#players-choice>)
-    * [Results](<#results>)
-    * [choices](<#choices>)
+    * [Header](<#header>)
+    * [Error message](<#error-message>)
+    * [Tying effect](<#typing-effect>)
+    * [Gspread](<#gspread>)
+    * [prettytable](<#prettytable>)
+    * [Receipt](<#receipt>)
 * [Future Features](<#future-features>)
 * [Technologies Used](<#technologies-used>)
 * [Testing](<#testing>)
@@ -40,7 +37,7 @@ You can view the live site here - <a href=" https://github.com/LauraMayock/who-w
 
 # Objective
 
-The goal is to create an interactive site that used a terminal that allows the user to go thourgh the process of ordering an ice-cream as they would if they were in an ice-cream shop.
+The goal is to create an interactive site using a command line interface. It provides an automated ordering process for the user, allowing them to order their favourtie ice-cream.
 
 [Back to top](#content)
 
@@ -52,10 +49,13 @@ The goal is to create an interactive site that used a terminal that allows the u
 * To be prompted if my input is invalid. 
 
 ## User Stories
-* As a user, I want a simple and interactive way to order my favourite ice-cream.
+* I want a simple and interactive way to order my favourite ice-cream.
 * I want clear guidance throughout.
 * I want a receipt with my purchase. Giving a clear outline of my purchase and the cost.
 
+## Owner of site
+* This system automates the order process for simple orders freeing up staff to concentrate on taking payments and services for both the business and user.
+* This allows for quicker delivery of service and allows staff to concentrate on orders with a higher monetary value.
 
 ## Flow Chart
 Using the website [lucidchart](https://www.lucidchart.com/) The flow chart below gives a simplified layout of what I was hoping to achieve. The shapes highlighted by the yellow colour show the stages where the user will be asked for simple input. the red boxes symbolise the negative input or an invalid input. While the green shows a positive response from the user.
@@ -71,88 +71,83 @@ Using the website [lucidchart](https://www.lucidchart.com/) The flow chart below
 
 <img src="https://i.ibb.co/y6wJZQH/logo.png" alt="logo"></a>
 
-## Title Bar
+## Error messages
 
-* In a prominent position, centred at the top of the site, is the game's name. Making it easily recognisable to visitors.
+* By installing [Colarama](https://pypi.org/project/colorama/) i have added a red colour to any error messages to provide a visual warning to the user.
 
-<img src="https://i.ibb.co/QC6XVbY/Heading.png" alt="Heading"></a>
-
-
-## Modal
-
-* Situated in the top left corner of the site is the help section.
-* To ensure high accessibility, I added the word help with the recognisable font icon to lead users there if further assistance or explanation is required of the game.
-* The modal provides a quick outline of the game's history and its rules.
-* For the users easy, not only is there a close button on the modal but if the user clicks outside the modal pop up area the modal will close.
-
-<img src="https://i.ibb.co/wSDkV87/modal-button.png" alt="modal-button"></a>
-
-<img src="https://i.ibb.co/58DDqNC/Modal-info.png" alt="Modal-info"></a>
+<img src="https://i.ibb.co/Gncdk03/Error-message.png" alt="Heading"></a>
 
 
-## Declaration of winning party
+## Typing effect
 
-* After each round is played, text will appear below the game name to announce the winner. 
-* Each possible outcome had a designated colour to make it quick for the user to recognise the outcome.
+* I have addig a typerwriter effect by using libraries time,sys. Code sourced from [www.101computing.net](https://www.101computing.net/python-typing-text-effect/)
+* This effect makes it a lot more reader friendly. 
+* It gives the impressing of a more thoughtful automation process giving the system a more welcoming and customer focused feel.
+* Os libary was also use to clear clutter from the screen to allow the user to focus on the question/desision at hand.
 
-<img src="https://i.ibb.co/6y1c3z4/tie-round.png" alt="tie-round"></a>
-<img src="https://i.ibb.co/mTkzN2Z/winning-round.png" alt="winning-round"></a>
-<img src="https://i.ibb.co/wMPLDkQ/lost-round.png" alt="lost-round"></a>
+## Gspread
 
-## Scoreboard
-
-* On the left is the player's score, which increases after each player win.
-* The right shows the computer's score, which also updates after each win.
-
-<img src="https://i.ibb.co/JrRTnXB/scoreboard.png" alt="scoreboard"></a>
-
-## Player v Computer 
-
-* The left box shows the player's chosen hand, and on the right, the computers. 
-* This gives for easy comparison.
-
-<img src="https://i.ibb.co/VTtfb4Q/display.png" alt="display"></a>
-
-## Round decider
-
-* After each round, the deciding factor based on the game's rules is also shown.
-* Its also great for new users as they can learn the rules of the game as they play.
-
-<img src="https://i.ibb.co/86X0hnL/rule.png" alt="rule"></a>
-<img src="https://i.ibb.co/N6RqNXb/examples-of-rules.png" alt="examples-of-rules"></a>
-<img src="https://i.ibb.co/2yqz2Lc/rule2.png" alt="rule2"></a>
+* The ice cream flavours have been saved on a google spread to allow the owner to amend the flavours easily. 
 
 
-## Players choices
+<img src="https://i.ibb.co/y0dpc9p/gspread.png" alt="gspread"></a>
 
-* Layed out at the bottom of the game are the moves the player can choose to play. Rock, Paper,     Scissors, Lizard, Spock.
-* When the player chooses a play, this triggers an automated random play from the computer.
-* Using the written word and a Font Awesome icon to represent it helps the user learn the hand movements usually associated with the game. It also ensures accessibility is being met to the highest of standards.
-* Each button also has a hoover element for users benefit.
 
-<img src="https://i.ibb.co/nL0w56F/font-icon-buttons.png" alt="font-icon-buttons"></a>
+## Prettytable
+
+* I have used the library prettytable to create a user friendly viewing. 
+* Ice cream flavours are outlined in a simple table form with a relating number that the user can use for quick decision making.
+
+<img src="https://i.ibb.co/P94j8QT/ice-cream-flavours.png" alt="Prettytable"></a>
+
+## Free sprinkles
+
+* With every 3 scoops of ice cream the customer can choose to have free sprinkles.
+
+
+
+## Reciept
+
+* 
+
+<img src=""></a>
+
+
 
 [Back to top](<#content>)
 
 
 # Future Features
 
-* I think that having the choice to either play as is or by rounds of 5 or 10 would provide the user with an opportunity to share their high score or wins on social media and guarantee return and new visitors.
-
-* As I have gone to such lengths to ensure the site's accessibility, I think the implintation of sound cues and effects would be a great add-on.
-
-* Currently, the site is responsive and recommended to play in portrait. Given more time, I would have liked to work on a smartphone landscape view for users' preferences.
-
+* Expanding the menu available, adding ice lollies.
+* To be able to order more than one ice-cream at a time.
+* To utilise gspread by holding a stocklist of available products. That would update the system when there are out of stocks.
 
 # Technologies used
 
-* HTML5 - Provides the sturcture and content for the website.
-* CSS3 - Provides the styling for the website.
-* JavaScript - To build and interative game, for the user to actively enage with data.
-* Google Chrome DevTools - Used to debug and test responsiveness of the site.
+* Python
 * gitpod - Used to develop website.
 * GitBash - Used to push repository to Github.
-* Github - Used host and deploy website.
+* HeroKu - Used host and deploy website.
+
+## Framework/Packages Used
+
+* os 
+Used to clear the ordering screen.
+* time and sys
+Used to create a typewriter effect.
+* gspread
+Used to hold the icecream flavours
+* google.oauth2.service_account and Credentials
+Accessing the gspread.
+* time date
+To post on receipts.
+* Prettytable
+Used to display iceCream flavours.
+* Colorama
+Adding a red colour to the warning text.
+
+
 
 [Back to top](<#content>)
 
@@ -163,42 +158,34 @@ Using the website [lucidchart](https://www.lucidchart.com/) The flow chart below
 * Both the CSS and HTML code was tested using W3 validation services. Each test came back with no issues highlighted.
 
 <img src="https://i.ibb.co/nkPm19j/v3-CSS-valatation-test.png" alt="v3-CSS-valatation-test"></a>
-<img src="https://i.ibb.co/P6FBqNn/w3-HTML-validation-tool.png" alt="w3-HTML-validation-tool"></a>
-
-* JavaScript was tested using [Beautifytools](https://beautifytools.com/javascript-validator.php)
-
-<img src="https://i.ibb.co/B2TvjDx/beautifytools-javascript-validator.png" alt="beautifytools-javascript-validator"></a>
-
-# Accessibility Testing
-
-## Lighthouse Testing
-
-* My origional design choices proved to cause quite a few accessibility issues.
-
-<a href="https://ibb.co/sHcJpKW"><img src="https://i.ibb.co/X86kf7Y/lighthouse-testing-Acessibility.png" alt="lighthouse-testing-Acessibility">Lighthouse accessibility test results</a>
-
-<img src="https://i.ibb.co/CtnTXCy/light-house-accessibility.png" alt="light-house-accessibility">Origional design</a>
 
 
-<a href="https://ibb.co/H7Wpm8c"><img src="https://i.ibb.co/F6SqGTQ/lighthouse-testing-Acessibility-buttons.png" alt="lighthouse-testing-Acessibility-buttons"></a>
-
-* For aesthetic purposes, I initially decided to use only the font awesome icons to represent each player's move choices. This raised an error with on lighthouse.
-* The choice of adding the written word and the font awesome icon meant that it was more user-friendly for people with impairment but also new users to the game.
- 
-
-<a href="https://ibb.co/8P39wrq"><img src="https://i.ibb.co/SVTBgtb/lighthouse-testing-Acessibility-modal-button.png" alt="lighthouse-testing-Acessibility-modal-button"></a>
-
-* It also adivse that the colour choice had a low contrast issue which i rectified.
-
-
-<img src="https://i.ibb.co/fNzPxD8/light-house-results-after-amendments.png" alt="light-house-results-after-amendments"></a>
-
-* Lighthouse test results after my changes.
-
-<a href="https://ibb.co/Wz4Y2VD"><img src="https://i.ibb.co/fNzPxD8/light-house-results-after-amendments.png" alt="light-house-results-after-amendments"></a>
-
- 
 ## Manual Testing
+
+* Testing user input
+
+| Test        |     Input   | Desired outcome |
+| :---------: | :----------:| :-------------: |
+| Welcome     | yes         | ✔               |
+|             | no          | ✔               |
+|             | wrong input | ✔               |
+| :---------: | :----------:| :--------------:
+| cup/cone    | cup         | ✔               |
+|             | cone        | ✔               |
+|             | wrong input | ✔               |
+| :---------: | :----------:| :--------------:
+| How many    | 1           | ✔               |
+| scoops      | 2           | ✔               |
+|             | 3           | ✔               |
+|             | wrong input | ✔               |
+| :---------: | :----------:| :--------------:
+| flavours    | 1 scoop     | ✔               |
+|             | 2 scoops    | ✔               |
+|             | 3 scoops    | ✔               |
+|             | wrong input | ✔               |
+| :---------: | :----------:| :--------------:
+
+
 
 * I have tested that this page works in the following browsers: Chrome, Edge, Safari and FireFox.
 * I tested responsiveness in portrait form using the inspect function on google chrome, and it is recommended to play in this position. 
