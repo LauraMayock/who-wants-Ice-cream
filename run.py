@@ -180,7 +180,7 @@ def iceCreamFlavours():
     """
     Text goes here
     """
-    global selected_flavour, new_choice
+    global selected_flavour
     while True:
         try:
             flv = list(map(int, input_req("what flavour would you like?")))
@@ -195,7 +195,8 @@ def iceCreamFlavours():
                 continue
             if len(flv) == noScoops:
                 type_print(f"you have chosen {selected_flavour}")
-                #customer_order.append(selected_flavour)
+                customer_order.append(selected_flavour)
+                flav_choice()
                 sprinkles()
                 break
         except ValueError:
@@ -213,7 +214,7 @@ def sprinkles():
 Free sprinkles when you get 3 scoops\n")
         answer = input("yes/no\n")
         if answer.lower() == ("yes"):
-            type_print("Added sprinkes")
+            type_print("Added sprinkes\n")
             price = 4.00
             print_Order()
             customer_order.append("Free sprinkles")
@@ -269,6 +270,5 @@ def print_Order():
 
 
 welcome()
-#place_order()
-#flav_choice()
+flav_choice()
 #print_Order()
