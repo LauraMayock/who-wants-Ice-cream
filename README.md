@@ -177,14 +177,25 @@ Adding a red colour to the warning text.
 | How many    | 1           | ✔               |
 | scoops      | 2           | ✔               |
 |             | 3           | ✔               |
-|             | wrong input | ✔               |
+|             | wrong input |                  |
 | :---------: | :----------:| :--------------:
 | flavours    | 1 scoop     | ✔               |
 |             | 2 scoops    | ✔               |
 |             | 3 scoops    | ✔               |
+|             | wrong input |               |
+| :---------: | :----------:| :--------------:
+| free        | yes         | ✔               |
+| sprinkles   | No          | ✔               |
 |             | wrong input | ✔               |
 | :---------: | :----------:| :--------------:
-
+| Sprinkles   | yes          | ✔               |
+| 1 scoop     | no          | ✔                |
+|             | wrong input |                  |
+| :---------: | :----------:| :--------------:
+| Sprinkles   | yes          | ✔               |
+| 2 scoop     | no          | ✔                |
+|             | wrong input |                  |
+| :---------: | :----------:| :--------------:
 
 
 * I have tested that this page works in the following browsers: Chrome, Edge, Safari and FireFox.
