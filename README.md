@@ -24,8 +24,8 @@ You can view the live site here - <a href=" https://github.com/LauraMayock/who-w
 * [Technologies Used](<#technologies-used>)
 * [Testing](<#testing>)
     * [Code Validation](<#code-validation>)
-    * [Accessibility Testing](<#accessibility-testing>)
     * [Manual Testing](<#manual-testing>)
+    * [Known bug](<#known-bug>)
     * [Bugs Fixed](<#bugs-fixed>)
 * [Deployment](<#deployment>)
     * [To Fork the repository on GitHub](#To-Fork-the-repository-on-GitHub)
@@ -106,12 +106,9 @@ Using the website [lucidchart](https://www.lucidchart.com/) The flow chart below
 
 
 
-## Reciept
-
-* 
-
-<img src=""></a>
-
+## order receipt
+* At the end of the ordering process an order slip is printed to allow for the making up of the order and the taking of payment.
+<img src="https://i.ibb.co/qkQJn5Z/order.png" alt="order receipt></a>
 
 
 [Back to top](<#content>)
@@ -182,31 +179,36 @@ Adding a red colour to the warning text.
 | flavours    | 1 scoop     | ✔               |
 |             | 2 scoops    | ✔               |
 |             | 3 scoops    | ✔               |
-|             | wrong input |               |
+|             | wrong input |                  |
 | :---------: | :----------:| :--------------:
 | free        | yes         | ✔               |
 | sprinkles   | No          | ✔               |
 |             | wrong input | ✔               |
 | :---------: | :----------:| :--------------:
-| Sprinkles   | yes          | ✔               |
-| 1 scoop     | no          | ✔                |
-|             | wrong input |                  |
+|             | yes          | ✔               |
+| 1 scoop     | wrong amount|  X                |
+|             | wrong input | ✔                |
 | :---------: | :----------:| :--------------:
-| Sprinkles   | yes          | ✔               |
-| 2 scoop     | no          | ✔                |
-|             | wrong input |                  |
+|             | yes          | ✔               |
+| 2 scoop     | wrong amount|  X               |
+|             | wrong input |  ✔               |
+| :---------: | :----------:| :--------------:
+| :---------: | :----------:| :--------------:
+|             | yes          | ✔               |
+| 2 scoop     | wrong amount|  X               |
+|             | wrong input |  ✔               |
 | :---------: | :----------:| :--------------:
 
+## Known bug 
 
-* I have tested that this page works in the following browsers: Chrome, Edge, Safari and FireFox.
-* I tested responsiveness in portrait form using the inspect function on google chrome, and it is recommended to play in this position. 
-* I tested that the text is readable in all website areas and that each round decider shows as required in the right circumstances.
+* At present the user is able to imput a number higher than 6.
+Obviously this is not ideal and with more time I would like to have amended this error but after exausting my reasources and time i decided to submit without amending.
 
 ## Bugs Fixed
 
 * Below are screen shots of some of the issues highlighted by devtools. 
 
-<img src="https://i.ibb.co/bKGG1Hx/devtools-bug-javascript-link.png" alt="devtools-bug-javascript-link"></a>
+<img src="https://i.ibb.co/MpndQ0Y/Error-when-chooseing-over-7.png" alt="know bugs"></a>
 
 * One of the above issues was a simple error with the link between the JavaScript page and HTML and was rectified easily.
 

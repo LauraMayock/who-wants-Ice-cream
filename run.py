@@ -10,6 +10,7 @@ from colorama import Fore
 import time
 import sys
 import os
+import random
 
 # initialize colorama
 colorama.init(autoreset=True)
@@ -38,6 +39,7 @@ noScoops = []
 now = datetime.now()
 date_stamp = now.strftime("%a:%d:%b:%y")
 time_stamp = now.strftime("%H:%M")
+order_num = random.randint(100, 500)
 
 
 def type_print(text):
@@ -203,7 +205,6 @@ def iceCreamFlavours():
             print(Fore.RED + "Please type a number between 1-6")
         clearScreen()
 
-
 def sprinkles():
     """
     Text goes here.
@@ -262,6 +263,7 @@ def print_Order():
     """
     order_table = PrettyTable()
     order_table.field_names = (["Order"])
+    order_table.add_row([f"Order: {order_num}"])
     order_table.add_row([f'Date: {date_stamp}'])
     order_table.add_row([f'Time: {time_stamp}'])
     order_table.add_row([f"Order: {customer_order + [new_choice]}"])
