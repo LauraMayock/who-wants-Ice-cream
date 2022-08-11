@@ -108,7 +108,7 @@ Using the website [lucidchart](https://www.lucidchart.com/) The flow chart below
 
 ## order receipt
 * At the end of the ordering process an order slip is printed to allow for the making up of the order and the taking of payment.
-<img src="https://i.ibb.co/qkQJn5Z/order.png" alt="order receipt></a>
+<img src="https://i.ibb.co/qkQJn5Z/order.png" alt="order receipt"></a>
 
 
 [Back to top](<#content>)
@@ -202,35 +202,46 @@ Adding a red colour to the warning text.
 ## Known bug 
 
 * At present the user is able to imput a number higher than 6.
-Obviously this is not ideal and with more time I would like to have amended this error but after exausting my reasources and time i decided to submit without amending.
-
-## Bugs Fixed
-
-* Below are screen shots of some of the issues highlighted by devtools. 
+Obviously this is not ideal and with more time I would like to have amended this error.
 
 <img src="https://i.ibb.co/MpndQ0Y/Error-when-chooseing-over-7.png" alt="know bugs"></a>
 
-* One of the above issues was a simple error with the link between the JavaScript page and HTML and was rectified easily.
+## Bugs Fixed
 
-* The second was highlighting an issue finding a Favicon. This was due to pre-saved software by Code Institue. When I installed a Favicon onto the site, it created another error because I had followed the steps on the Favicon website on how to install it, not knowing that this step was already preloaded.
+## Printing flavours by name 
 
-* Issue with Modal
+* I had trouble at first trying to find a way to convert the flavour numbers chosen by the customer back to the flavour names.
+  I tried to achieve this in a few different ways. Originally I tried to use the number the user inputted to select the flavour name on gspread but as I had the flavour list already linked to the keyword flavour using the below code it seemed cumbersome way.
 
-<a href="https://ibb.co/TTBMtH0"><img src="https://i.ibb.co/cvchQN8/devtools-bugs-modal-issue.png" alt="devtools-bugs-modal-issue" border="0"></a>
+<img src="https://i.ibb.co/2gxjP3g/gspread-1.png" alt="gspread-1 information"></a>
 
-* This was due to the fact that i did not create a getElement between the modal button and Javascript. I did with the Modal itself but didnt recognise that it was needed for both.
+* Using the flav-list keyword I used a for loop that would append the flavour name to the customer_order global variable but this would only print one favour to the order receipt. 
+* In the below example you can see that although there were two scoops chosen, flavours 4,5 only one flavour name is shown. 
+<img src="https://i.ibb.co/Qry3TF7/not-listing-flavours.png" alt="know error with flavours">
 
-* Show icon not defined
+* In creating a fuction that would take the users number choices and use a for loop to run them through the for loop and append them to new_choice = [] allowed me to print all of the users ice choices by name in the order- receipt. 
 
-<img src="https://i.ibb.co/bsN96H8/devtools-bugs.png" alt="devtools-bugs"></a>
+<img src="https://i.ibb.co/ZNftCb7/flav-choice.png" alt="flav-choice"></a>
 
-* The above error was caused by me not defining the element before using it in a function.
+## Sprinkles in a loop
 
-* The Favicon shown in the above image is the same issue discussed above.
+* The below is a snipping tool showing a loop where the user would place their order and choose if they wanted sprinkles, the order slip would be printed but the terminal would then request if they would like sprinkles again. This was caused by me calling the function sprinkles at the end of the code. Once remove this amended the bug.
 
-* I used a seprate gitpod work space to work through and test code before implimenting it. This help grately to ensure that I didnt break any of the functions that I proviously implimended. 
+<img src="https://i.ibb.co/znN4qjY/sprinkles-loop.png" alt="sprinkles-loop"></a>
 
-* I aimed to add an option to play a round of 5 or 10 and then for the game to end showing an overall winner, but this caused a lot of issues, and due to time constraints, it had to be left for a future feature.
+## Price updating
+
+* Originally I was using the keyword append to save the price to be called in the order-receipt function. But I the customer chose sprinkles the price would not be added to the price of the ice cream, instead it was shown in conjunction with it. In the end I found that updating the price variable when needed using the = sign was the most straightforward and effective way.
+
+<img src="https://i.ibb.co/02zK1HQ/price-update.png" alt="price-update"></a>
+
+## Updating requiremnets file
+
+* After adding new liberys to my github I found that the Hekuro terminal was not supporting the amendments. After much research I came to the conclusing that this was because i did not update the requirments file in my github workspace using 
+
+pip freeze > requirements.txt
+
+[Requirements file update](https://learnpython.com/blog/python-requirements-file/#:~:text=It%20is%20also%20possible%20to%20upgrade%20everything%20with,%3E%20requirements.txt%20to%20update%20the%20Python%20requirements%20file.)
 
 # Deployment
 
@@ -289,9 +300,9 @@ A copy of the GitHub Repository can be made by forking the GitHub account. Chang
 
 
 * [Credits](<#credits>)
-* [Css background](https://codepen.io/P1N2O/pen/pyBNzX)
-* [Javascript Jutorial source](https://javascript.tutorialink.com/rock-paper-scissors-game-using-javascript/)
-* [Javascript Jutorial source 2](https://betterprogramming.pub/7-ways-to-code-rock-paper-scissors-in-javascript-4189a5e7e535)
+* [Inspiraation](https://github.com/shahid129/my-sub-my-way)
+* [W3school for Date and time print ](https://www.w3schools.com/python/python_datetime.asp)
+* [python typing effect and clear screen](https://www.101computing.net/python-typing-text-effect/)
 * [Javascript Jutorial source 3](https://wierdlygoodcoder.github.io/rock-paper-scissors/)
 * [modal tutorial](https://www.w3schools.com/w3css/w3css_modal.asp)
 * [Css grid](https://www.youtube.com/watch?v=9zBsdzdE4sM&t=5s&ab_channel=WebDevSimplified)
