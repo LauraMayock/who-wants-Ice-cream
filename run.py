@@ -8,9 +8,9 @@ from datetime import datetime   # import for timestamp
 import colorama  # import for font colour
 from colorama import Fore
 import time
-import sys
-import os
-import random
+import sys  # import for typing effect
+import os  # Import for clearscreen fuction
+import random  # Import for order number
 
 # initialize colorama
 colorama.init(autoreset=True)
@@ -44,7 +44,7 @@ order_num = random.randint(100, 500)
 
 def type_print(text):
     """
-    code taken from www.101computing.net
+    code taken from www.101computing.net. Typewriter effect
     """
     for shop in text:
         sys.stdout.write(shop)
@@ -65,13 +65,23 @@ def input_req(text):
 
 
 def clearScreen():
+    """
+    Clear screen effect.
+    """
     os.system("clear")
 
+
 def buffer():
+    """
+    Pause after warning before clearing screen
+    """
     time.sleep(.5)
 
 
 def welcome():
+    """
+    Welcome Banner of shop name
+    """
 
     print("#██████╗██╗  ██╗███████╗   ██╗███╗   ██╗██████╗██╗██████╗ ██████╗")
     print("#╚═██╔═╝██║  ██║██╔════╝   ██║████╗  ██║██╔═══╝██║██╔══██╗██╔═══╝")
@@ -90,16 +100,18 @@ def welcome():
 
 def start_order():
     """
-    Function to welcome the customer and ask if
+    Using an if else Function to welcome the customer and ask if
     they would like to order.
     """
     type_print("\nHi, Welcome to The Inside Scoop")
     type_print("\nWould you like to place an order?")
+    # Requests input from user
     question1 = input_req("\nPlease enter yes or no.\n")
     if question1.lower() == ("yes"):
         place_order()
     elif question1.lower() == ("no"):
         type_print("Ok, let me know when you have decided.\n")
+        # Calls a function that allows a pause before clearing the screen
         buffer()
         clearScreen()
         welcome()
@@ -113,7 +125,7 @@ def start_order():
 
 def place_order():
     """
-    Text goes here
+    Function allowing the user to choose between cup or cone
     """
     choice = True
     while True:
@@ -129,9 +141,10 @@ or a cone?\n").lower()
 
 def number_scoops():
     """
-    Text goes here.
+    A funciton requesting input from user on now many scoops required
     """
     global noScoops
+    # requests input form user
     scoops = int(input_req("How many scoops? Enter 1, 2 or 3\n"))
     if scoops == 1:
         type_print("Ok, one scoop\n")
@@ -142,7 +155,7 @@ def number_scoops():
     elif scoops == 2:
         type_print("Ok,two scoops it is.\n")
         customer_order.append("two scoops")
-        noScoops = 2
+        noScoops = 2  # global variable to be called upon again
         buffer()
         flavour_choice()
     elif scoops == 3:
@@ -159,18 +172,21 @@ def number_scoops():
 
 def flavour_choice():
     """
-    Text goes here.
+    Pulling the flavour names from the google gspread
+    and saving it to a variable
+    so that it can be used in a prettytable fromat
+    for the users convenience.
     """
     flavour_list = []
     for type in flav_list:
+        # Append the flavours in the gspread to a variable to be called on
         flavour_list.append(type)
-    num = []
+    num = []  # Creates a number range between 1-7 to be shown in a prettytable
     for i in range(1, 7):
         num.append(i)
 
-
     flavour_choice.type = dict(zip(num, flavour_list))
-
+    # create a prettytable to display num and flavour_list variable
     type_table = PrettyTable()
     type_table.field_names = num
     type_table.add_row(flavour_list)
@@ -180,13 +196,17 @@ def flavour_choice():
 
 def iceCreamFlavours():
     """
-    Text goes here
+    Ensuring that the customer only chooses the number
+    of flavours previously requested
     """
     global selected_flavour
     while True:
         try:
-            flv = list(map(int, input_req("what flavour would you like?")))
+            flv = list
+            (map(int, input_req("what flavour would you like?")))
+            # saving the input as intergins in list form in a new variable
             selected_flavour = [int(i)for i in flv]
+            # comparing number inputted to the number of scoops
             if len(flv) > noScoops:
                 print(Fore.RED + f"You have chosen {flv}. Thats too many.\
                 You wanted {noScoops} scoops.")
@@ -205,9 +225,11 @@ def iceCreamFlavours():
             print(Fore.RED + "Please type a number between 1-6")
         clearScreen()
 
+
 def sprinkles():
     """
-    Text goes here.
+    Allowing the customer to add sprinkes or not
+    and appending the correct price to the order.
     """
     global price
     if noScoops == 3:
@@ -216,7 +238,7 @@ Free sprinkles when you get 3 scoops\n")
         answer = input("yes/no\n")
         if answer.lower() == ("yes"):
             type_print("Added sprinkes\n")
-            price = 4.00
+            price = 4.00  # Saving the price of the cone to a global variable
             print_Order()
             customer_order.append("Free sprinkles")
         elif answer.lower() == ("no"):
@@ -232,7 +254,7 @@ It will be and extra 50c\n yes/no")
         if question3.lower() == ("yes"):
             type_print("Added sprinkles\n")
             if noScoops == 1:
-                price = 2.5
+                price = 2.5  # Adding .50c on to the price of the ice- cream
                 print_Order()
             if noScoops == 2:
                 price = 3.50
@@ -247,9 +269,11 @@ It will be and extra 50c\n yes/no")
         else:
             print(Fore.RED + "Plese enter yes or no.")
 
+
 def flav_choice():
     """
-    Infor here
+    Converting the flavour number inputted by the
+    user to the flavour name from the gspread.
     """
     global new_choice
     new_choice = []
@@ -259,7 +283,7 @@ def flav_choice():
 
 def print_Order():
     """
-    Print order
+    Print order-slip using prettytable
     """
     order_table = PrettyTable()
     order_table.field_names = (["Order"])
@@ -273,4 +297,3 @@ def print_Order():
 
 welcome()
 flav_choice()
-#print_Order()

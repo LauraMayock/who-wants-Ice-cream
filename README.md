@@ -152,9 +152,9 @@ Adding a red colour to the warning text.
 
 ## Code Validation
 
-* Both the CSS and HTML code was tested using W3 validation services. Each test came back with no issues highlighted.
+* [PEP8 online validation tool](http://pep8online.com) was used to validate code. Although quite a few errors showed up all were easily fixed.
 
-<img src="https://i.ibb.co/nkPm19j/v3-CSS-valatation-test.png" alt="v3-CSS-valatation-test"></a>
+<img src="https://i.ibb.co/K9z8KF7/validation.png" alt="validation" ></a>
 
 
 ## Manual Testing
@@ -303,9 +303,9 @@ A copy of the GitHub Repository can be made by forking the GitHub account. Chang
 * [Inspiraation](https://github.com/shahid129/my-sub-my-way)
 * [W3school for Date and time print ](https://www.w3schools.com/python/python_datetime.asp)
 * [python typing effect and clear screen](https://www.101computing.net/python-typing-text-effect/)
-* [Javascript Jutorial source 3](https://wierdlygoodcoder.github.io/rock-paper-scissors/)
-* [modal tutorial](https://www.w3schools.com/w3css/w3css_modal.asp)
-* [Css grid](https://www.youtube.com/watch?v=9zBsdzdE4sM&t=5s&ab_channel=WebDevSimplified)
+* [patorijk.com banner creator](https://patorjk.com/software/taag/#p=display&c=bash&f=ANSI%20Shadow&t=The%20Inside%20Scoop)
+* [Stack Overflow](https://stackoverflow.com/)
+* [w3school](https://www.w3schools.com/)
 * [Basis of READ.ME](https://github.com/LauraMayock/motherandbaby/blob/main/README.md)
 
 
